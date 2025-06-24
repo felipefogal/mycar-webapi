@@ -28,7 +28,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/{userName}")
     public ResponseEntity<?> buscarPorUserName(@PathVariable String userName) {
         return usuarioRepository.findByUserName(userName).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }

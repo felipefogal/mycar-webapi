@@ -22,14 +22,14 @@ public class CarroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(carro);
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<Carro>> listarCarros() {
-//        List<Carro> carros = carroRepository.findAll();
-//        return ResponseEntity.ok(carros);
-//    }
-//
-//    @GetMapping("/{nome}")
-//    public ResponseEntity<?> buscaPorNome(@PathVariable String nome) {
-//        return carroRepository.findByNome(nome).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-//    }
+    @GetMapping
+    public ResponseEntity<List<Carro>> listarCarros() {
+        List<Carro> carros = carroRepository.findAll();
+        return ResponseEntity.ok(carros);
+    }
+
+    @GetMapping("/{nome}")
+    public ResponseEntity<?> buscaPorNome(@PathVariable String nome) {
+        return carroRepository.findByNome(nome).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
 }

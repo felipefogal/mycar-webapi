@@ -2,9 +2,11 @@ package br.com.felipefogal.projetoWebapi.repository;
 
 import br.com.felipefogal.projetoWebapi.model.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 
 public interface UsuarioRepository extends MongoRepository<Usuario, Long> {
-    Optional<Usuario> findByUserName(String username);
+
+    Optional<Usuario> findByUserName(String userName);
 }
