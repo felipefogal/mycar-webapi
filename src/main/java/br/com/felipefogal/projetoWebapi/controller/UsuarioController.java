@@ -2,6 +2,7 @@ package br.com.felipefogal.projetoWebapi.controller;
 
 import br.com.felipefogal.projetoWebapi.model.Usuario;
 import br.com.felipefogal.projetoWebapi.repository.UsuarioRepository;
+import br.com.felipefogal.projetoWebapi.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping
     @Operation(summary = "Cria usuários", description = "Endpoint para criação de novos usuários")
@@ -37,5 +41,16 @@ public class UsuarioController {
     @Operation(summary = "Lista usuário específico", description = "Retorna um usuário específico de acordo com seu username")
     public ResponseEntity<?> buscarPorUserName(@PathVariable String userName) {
         return usuarioRepository.findByUserName(userName).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{userName}")
+    @Operation(summary = "Deleta usuário específico", description = "Remove um usuário de acordo com o username informado")
+    public ResponseEntity<String> deletarUsuarioPorUserName(@PathVariable String userName) {
+        boolean usuarioDeletado = usuarioService.deletarPorUserName(userName);
+        if (usuarioDeletado) {
+            return ResponseEntity.ok("Usuario " + userName + " deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario " + userName + " não encontrado na base");
+        }
     }
 }
