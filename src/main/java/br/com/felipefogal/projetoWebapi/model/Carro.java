@@ -18,8 +18,8 @@ public class Carro {
     @JsonProperty("nome")
     private String nome;
 
-    @JsonProperty("modelo")
-    private String modelo;
+    @JsonProperty("versao")
+    private String versao;
 
     @JsonProperty("fabricante")
     private String fabricante;
@@ -32,4 +32,16 @@ public class Carro {
 
     @JsonProperty("quilometragem")
     private Long quilometragem;
+
+    @JsonProperty("cor")
+    private String cor;
+
+    @JsonProperty("opcionais")
+    private String opcionais;
+
+    @JsonProperty("motorizacao")
+    private String motorizacao;
+
+    @JsonProperty("preco")
+    private String preco;
 }

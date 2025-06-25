@@ -31,4 +31,7 @@ public class Usuario {
 
     @JsonProperty("sexo")
     private String sexo;
+
+    @JsonProperty("email")
+    private String email;
 }
