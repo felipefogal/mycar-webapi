@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface CarroRepository extends MongoRepository<Carro, Long> {
+public interface CarroRepository extends MongoRepository<Carro, String> {
 
     Optional<Carro> findByNome(String nome);
+
+    void deleteByNome(String nome);
 }
