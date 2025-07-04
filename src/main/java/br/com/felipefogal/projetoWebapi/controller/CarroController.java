@@ -37,20 +37,26 @@ public class CarroController {
         return ResponseEntity.ok(carros);
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/nome/{nome}")
     @Operation(summary = "Lista um carro específico", description = "Retorna os dados de um carro específico")
     public ResponseEntity<?> buscaPorNome(@PathVariable String nome) {
         return carroRepository.findByNome(nome).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{nome}")
-    @Operation(summary = "Deleta um carro específico", description = "Exclui um carro específico de acordo com o nome informado")
-    public ResponseEntity<String> deletarCarroPorNome(@PathVariable String nome) {
-        boolean deletado = service.deletarPorNome(nome);
+    @GetMapping("/id/{id}")
+    @Operation(summary = "Lista um carro por id", description = "Retorna os dados de um carro específico pelo seu id")
+    public ResponseEntity<?> buscaPorId(@PathVariable String id) {
+        return carroRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta um carro específico por id", description = "Exclui um carro específico de acordo com o id do carro informado")
+    public ResponseEntity<String> deletarCarroPorId(@PathVariable String id) {
+        boolean deletado = service.deletarPorId(id);
         if (deletado) {
-            return ResponseEntity.ok("Carro com nome " + nome + " deletado com sucesso");
+            return ResponseEntity.ok("Carro " + id + " deletado com sucesso");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Carro com nome " + nome + " não encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Carro com id " + id + " não encontrado na base de dados");
         }
     }
 }

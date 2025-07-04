@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "usuarios")
 public class Usuario {
     @Id
+    @JsonProperty("id")
     private String id;
 
     @JsonProperty("username")

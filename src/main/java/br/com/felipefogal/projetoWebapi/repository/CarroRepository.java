@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface CarroRepository extends MongoRepository<Carro, String> {
 
     Optional<Carro> findByNome(String nome);
-
-    void deleteByNome(String nome);
+    Optional<Carro> findById(String id);
+    void deleteById(String id);
 }

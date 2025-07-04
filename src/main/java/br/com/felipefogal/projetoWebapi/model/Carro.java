@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Carro {
 
     @Id
+    @JsonProperty("id")
     private String id;
 
     @JsonProperty("nome")

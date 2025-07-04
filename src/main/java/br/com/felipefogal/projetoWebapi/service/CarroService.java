@@ -13,10 +13,10 @@ public class CarroService {
     @Autowired
     private CarroRepository repository;
 
-    public  boolean deletarPorNome(String nome) {
-        Optional<Carro> carro = repository.findByNome(nome);
+    public boolean deletarPorId(String id) {
+        Optional<Carro> carro = repository.findById(id);
         if (carro.isPresent()) {
-            repository.deleteByNome(nome);
+            repository.deleteById(id);
             return true;
         }
         return false;
