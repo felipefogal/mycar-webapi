@@ -37,20 +37,20 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
-    @GetMapping("/{userName}")
+    @GetMapping("/username/{userName}")
     @Operation(summary = "Lista usuário específico", description = "Retorna um usuário específico de acordo com seu username")
     public ResponseEntity<?> buscarPorUserName(@PathVariable String userName) {
         return usuarioRepository.findByUserName(userName).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{userName}")
+    @DeleteMapping("/username/{id}")
     @Operation(summary = "Deleta usuário específico", description = "Remove um usuário de acordo com o username informado")
-    public ResponseEntity<String> deletarUsuarioPorUserName(@PathVariable String userName) {
-        boolean usuarioDeletado = usuarioService.deletarPorUserName(userName);
+    public ResponseEntity<String> deletarUsuarioPorId(@PathVariable String id) {
+        boolean usuarioDeletado = usuarioService.deletarPorId(id);
         if (usuarioDeletado) {
-            return ResponseEntity.ok("Usuario " + userName + " deletado com sucesso!");
+            return ResponseEntity.ok("Usuario " + id + " deletado com sucesso!");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario " + userName + " não encontrado na base");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario " + id + " não encontrado na base");
         }
     }
 }

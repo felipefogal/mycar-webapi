@@ -13,10 +13,10 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repository;
 
-    public boolean deletarPorUserName(String userName){
-        Optional<Usuario> usuario = repository.findByUserName(userName);
+    public boolean deletarPorId(String id){
+        Optional<Usuario> usuario = repository.findById(id);
         if (usuario.isPresent()) {
-            repository.deleteByUserName(userName);
+            repository.deleteById(id);
             return true;
         }
         return false;
