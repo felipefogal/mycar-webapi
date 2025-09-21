@@ -12,24 +12,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "usuarios")
-public class Usuario {
+@Document(collection = "oficinas")
+public class Oficina {
     @Id
     @JsonProperty("id")
     private String id;
 
-    @JsonProperty("username")
-    private String userName;
-
     @JsonProperty("nome")
     private String nome;
 
-    @JsonProperty("idade")
-    private String idade;
+    @JsonProperty("servicos")
+    private String servicos;
 
-    @JsonProperty("sexo")
-    private String sexo;
-
-    @JsonProperty("email")
-    private String email;
+    @JsonProperty("garantia")
+    private String garantia;
 }
